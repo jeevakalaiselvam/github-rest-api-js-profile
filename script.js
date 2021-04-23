@@ -4,7 +4,7 @@ const REPOSAPI = "https://api.github.com/users/repos";
 const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
-const lastSearch = "florinpop17";
+let lastSearch = "florinpop17";
 
 getUserData();
 
@@ -50,14 +50,16 @@ function addReposToCard(repos) {
     const reposEl = document.getElementById("repos");
     console.log(reposEl);
     console.log(repos);
-    repos.forEach((repo) => {
-        const repoEl = document.createElement("a");
-        repoEl.classList.add("repo");
-        repoEl.href = repo.html_url;
-        repoEl.target = "_blank";
-        repoEl.innerText = repo.name;
-        reposEl.appendChild(repoEl);
-    });
+    repos
+        .sort((a, b) => b.stargazers_count - a.stargazers_count)
+        .forEach((repo) => {
+            const repoEl = document.createElement("a");
+            repoEl.classList.add("repo");
+            repoEl.href = repo.html_url;
+            repoEl.target = "_blank";
+            repoEl.innerText = repo.name;
+            reposEl.appendChild(repoEl);
+        });
 }
 
 form.addEventListener("submit", (e) => {
