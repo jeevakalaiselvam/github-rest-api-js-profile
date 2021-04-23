@@ -54,9 +54,9 @@ input:focus {
 }
 
 .img-container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
 .user-info {
@@ -86,4 +86,16 @@ input:focus {
 
 .info li {
     list-style: none;
+}
+
+.repo {
+    background-color: #2a2a72;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-size: 0.7rem;
 }
