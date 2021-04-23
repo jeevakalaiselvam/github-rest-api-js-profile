@@ -1,13 +1,20 @@
+//API Reference point initialization
 const APIURL = "https://api.github.com/users/";
 const REPOSAPI = "https://api.github.com/users/repos";
 
+//References to DOM elements
 const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 let lastSearch = "florinpop17";
 
+//Get initial default user data
 getUserData();
 
+/**
+ * @author Jeeva Kalaiselvam
+ * @param {string} username Github username
+ */
 async function getUserData(username = "jeevakalaiselvam") {
     const response = await fetch(APIURL + username);
     const responseData = await response.json();
@@ -15,13 +22,24 @@ async function getUserData(username = "jeevakalaiselvam") {
     getRepos(username);
 }
 
+/**
+ * @author Jeeva Kalaiselam
+ * @param {string} username Github username
+ */
 async function getRepos(username) {
     const response = await fetch(APIURL + username + "/repos");
     const responseData = await response.json();
+    //Add obtained repos to profile card
     addReposToCard(responseData);
 }
 
+/**
+ * This function will generate a profile card and populate it with data obtained from user data object
+ * @author Jeeva Kalaiselvam
+ * @param {Object} user Profile object obtained from Github REST servics
+ */
 function createUserCard(user) {
+    //Profile card element creation
     const cardHTML = `
     <div class='card'>
     <div class="img-container">
@@ -46,6 +64,10 @@ function createUserCard(user) {
     main.innerHTML = cardHTML;
 }
 
+/**
+ * @author Jeeva Kalaiselvam <jeevak001@outlook.com>
+ * @param {Object} repos - Repository Objects containing all repositories
+ */
 function addReposToCard(repos) {
     const reposEl = document.getElementById("repos");
     console.log(reposEl);
@@ -62,6 +84,7 @@ function addReposToCard(repos) {
         });
 }
 
+//Check for user pressing enter and prevent default behaviour
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -69,6 +92,7 @@ form.addEventListener("submit", (e) => {
     lastSearch = search.value;
 
     if (user) {
+        //If user typed in a value, Get data for that user from Github REST
         getUserData(user);
         search.value = "";
     }
