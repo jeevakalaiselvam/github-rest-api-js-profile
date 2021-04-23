@@ -19,17 +19,18 @@ body {
 input {
     background-color: #232c3e;
     border-radius: 5px;
-    color: #2a65a8;
+    color: #445068;
     border: none;
     padding: 1rem;
     font-family: inherit;
     font-size: 1rem;
     text-align: center;
     margin-bottom: 2rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 input::placeholder {
-    color: #2a65a8;
+    color: #445068;
 }
 
 input:focus {
