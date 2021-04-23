@@ -8,7 +8,7 @@ let lastSearch = "florinpop17";
 
 getUserData();
 
-async function getUserData(username = "florinpop17") {
+async function getUserData(username = "jeevakalaiselvam") {
     const response = await fetch(APIURL + username);
     const responseData = await response.json();
     createUserCard(responseData);
